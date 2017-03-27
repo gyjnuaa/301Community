@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>301 Community</h1>
+    <p class="lead">@ViewBag.Message</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>301 Community</h2>
+        <p>
+            @Html.ActionLink("Create", "Create", "Guestbook")
+        </p>
+        <p>
+            @Html.ActionLink("List", "Index", "Guestbook")
+        </p>
+    </div>
+</div>
