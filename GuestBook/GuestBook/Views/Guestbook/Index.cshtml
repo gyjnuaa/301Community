@@ -7,17 +7,22 @@
 <p>
     <a href="/Guestbook/Create">Add a new entry</a>
 </p>
-@foreach (var entry in ViewBag.Entries)
+@foreach (var entry in Model)
 {
-    <section class="contact">
-    <header>
-        <h3>@entry.Message</h3>
-        <h4>@Html.ActionLink("Detail", "Show", new { id = entry.Id })</h4>
-    </header>
-        <p>
-            Posted by @entry.Name on @entry.DateAdded.ToLongDateString();
+    <section class="contact" style="background-color: #f4a460; border-radius: 10px; text-align: left; height: 200px; width: 200px; float: left; margin: 10px; position: relative;color: black">
+        <a class="glyphicon glyphicon-remove" style="float: right; cursor: pointer;color: black" onclick="del(@entry.Id)"></a>
+        @*<h3 style="padding: 5px;">@Html.ActionLink(entry.Message, "Show", new { id = entry.Id })</h3>*@
+        <p style="padding: 20px 10px 10px 10px;font-family: Microsoft Yahei">@entry.Message</p>
+        <p style="text-align: right; padding: 5px; position: absolute; bottom: 0; margin-bottom: 0;">
+            By @entry.Name on @entry.DateAdded.ToString()
         </p>
         
         </section>
 }
-
+<script>
+    function del(id) {
+        $.post('@Url.Action("Delete", "Guestbook")', { id: id }, function(data) {
+            location.reload();
+        });
+    }
+</script>

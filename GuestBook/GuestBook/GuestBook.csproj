@@ -173,6 +173,7 @@
     <Content Include="Views\Guestbook\Index.cshtml" />
     <Content Include="Views\Guestbook\Show.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
+    <None Include="Properties\PublishProfiles\GuestBook.pubxml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,7 +23,7 @@ namespace GuestBook.Controllers
             entry.DateAdded=DateTime.Now;
             _db.Entries.Add(entry);
             _db.SaveChanges();
-            return Content("New entry Successfully added");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Index()
@@ -39,6 +40,15 @@ namespace GuestBook.Controllers
             bool hasPermission = User.Identity.Name == entry.Name;
             ViewBag.HasPermission = hasPermission;
             return View(entry);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var entry = _db.Entries.Find(id);
+            _db.Entries.Attach(entry);
+            _db.Entries.Remove(entry);
+            _db.SaveChanges();
+             return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }
