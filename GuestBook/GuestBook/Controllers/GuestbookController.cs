@@ -20,10 +20,14 @@ namespace GuestBook.Controllers
         [HttpPost]
         public ActionResult Create(GuestbookEntry entry)
         {
-            entry.DateAdded=DateTime.Now;
-            _db.Entries.Add(entry);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                entry.DateAdded = DateTime.Now;
+                _db.Entries.Add(entry);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(entry);
         }
 
         public ActionResult Index()
